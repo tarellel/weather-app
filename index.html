@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>weather-app</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.css">
+  </head>
+  <body>
+  <div class="container">
+    <h1 class="text-center">Current Weather</h1>
+    <div id="app">
+      <form v-on:submit.prevent="lookupWeather">
+        <template>
+          <places placeholder="Where are we going?" :options="{ countries: 'US' }" v-model.trim="location"></places>
+        </template>
+        <p class="text-center"><small>Currently set to search by U.S. cities only</small></p>
+      </form>
+
+
+      <div v-if="location" class="details col-md-12">
+        <h3>
+          <strong>Lookup:</strong> {{ location }}
+        </h3>
+        <p v-if="weather.temperature">
+          <strong>Temperature:</strong> {{ weather.temperature }} &deg; (F)<br>
+          <strong>Wind:</strong> {{ weather.wind }} (mph)<br>
+          <strong>Description:</strong> {{ weather.desc }}
+        </p>
+
+        <div class="weatherIcon text-center" v-if="weather.desc">
+          <h1 class="wi" :class="weatherIcon()"></h1>
+        </div>
+      </div>
+    </div>
+    <footer class="text-center col-md-12">
+      <p>
+        Copyright &copy; Brandon Hicks<br>
+        Background by <a href="https://unsplash.com/photos/MthLYI2WLCs">Ales Krivec</a> is licensed under a Creative Commons Zero <a href="https://creativecommons.org/publicdomain/zero/1.0/">Creative Commons Zero</a>.
+      </p>
+    </footer>
+  </body>
+</html>
