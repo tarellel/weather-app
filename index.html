@@ -8,17 +8,22 @@
   </head>
   <body>
   <div class="container">
-    <h1 class="text-center">Current Weather</h1>
+    <h1 class="text-center ts">Current Weather</h1>
     <div id="app">
       <form v-on:submit.prevent="lookupWeather">
         <template>
-          <places placeholder="Where are we going?" :options="{ countries: 'US' }" v-model.trim="location"></places>
+          <!-- <places placeholder="Where are we going?" :options="{ countries: 'US' }" v-model.trim="location"></places> -->
+          <places
+            v-model="location"
+            placeholder="Where are we going ?"
+            :options="{ countries: ['US'] }">
+          </places>
         </template>
-        <p class="text-center"><small>Currently set to search by U.S. cities only</small></p>
+        <p class="text-center ts"><small>Currently set to search by U.S. cities only</small></p>
       </form>
 
 
-      <div v-if="location" class="details col-md-12">
+      <div v-if="location" class="details col-md-12 ts">
         <h3>
           <strong>Lookup:</strong> {{ location }}
         </h3>
@@ -33,10 +38,10 @@
         </div>
       </div>
     </div>
-    <footer class="text-center col-md-12">
+    <footer class="text-center col-md-12 ts">
       <p>
         Copyright &copy; Brandon Hicks<br>
-        Background by <a href="https://unsplash.com/photos/MthLYI2WLCs">Ales Krivec</a> is licensed under a Creative Commons Zero <a href="https://creativecommons.org/publicdomain/zero/1.0/">Creative Commons Zero</a>.
+        Background by <a href="https://unsplash.com/photos/-g7axSVst6Y">Štefan Štefančík</a> is licensed under a <a href="https://creativecommons.org/publicdomain/zero/1.0/">Creative Commons Zero</a>.
       </p>
     </footer>
   </body>

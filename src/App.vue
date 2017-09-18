@@ -10,16 +10,20 @@ export default {
 /* Attributes */
 body{
   background-color: #D2ECF9;
-  background: url('/static/photo-1428940253195-53483a1de2e6.jpeg') no-repeat center center fixed;
+  /*background: url('/static/photo-1428940253195-53483a1de2e6.jpeg') no-repeat center center fixed;*/
+  background: url('/static/photo-1466854076813-4aa9ac0fc347.jpeg') no-repeat center center fixed;
   background-size: cover;
   color: #f6faf7;
+
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   font-weight: 500;
   padding: 50px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-a, a:active, a:visited{ color: #1fab89; }
+a, a:active, a:visited{
+  color: #00ffd4;
+}
 
 /* Elements/Layout */
 #app {
@@ -27,7 +31,13 @@ a, a:active, a:visited{ color: #1fab89; }
   margin-top: 60px;
 }
 
-h3 { color: #1fab89;}
+.ts{
+  text-shadow: 0 1px 2px rgba(0,0,0,.25);
+}
+
+
+/*h3 { color: #1fab89;}*/
+h3{ color: #fff; }
 
 .weatherIcon{
   font-size: 40px;
