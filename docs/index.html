@@ -5,18 +5,22 @@
     <title>weather-app</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.css">
-  <link href="./static/css/app.3ee5de100db30d4af2606bbd6019bdcb.css" rel="stylesheet"></head>
+  <link href="/static/css/app.8b36083165e7336c1c4b822c63f1a284.css" rel="stylesheet"></head>
   <body>
   <div class="container">
-    <h1 class="text-center">Current Weather</h1>
+    <h1 class="text-center ts">Current Weather</h1>
     <div id="app">
       <form v-on:submit.prevent="lookupWeather">
         <template>
-          <places placeholder="Where are we going?" :options="{ countries: 'US' }" v-model.trim="location"></places>
+          
+          <places v-model="location" placeholder="Where are we going ?" :options="{ countries: ['US'] }">
+          </places>
         </template>
-        <p class="text-center"><small>Currently set to search by U.S. cities only</small></p>
+        <p class="text-center ts"><small>Currently set to search by U.S. cities only</small></p>
       </form>
-      <div v-if="location" class="details col-md-12">
+
+
+      <div v-if="location" class="details col-md-12 ts">
         <h3>
           <strong>Lookup:</strong> {{ location }}
         </h3>
@@ -25,18 +29,17 @@
           <strong>Wind:</strong> {{ weather.wind }} (mph)<br>
           <strong>Description:</strong> {{ weather.desc }}
         </p>
+
         <div class="weatherIcon text-center" v-if="weather.desc">
           <h1 class="wi" :class="weatherIcon()"></h1>
         </div>
       </div>
     </div>
-    <footer class="text-center col-md-12">
+    <footer class="text-center col-md-12 ts">
       <p>
         Copyright &copy; Brandon Hicks<br>
-        Background by <a href="https://unsplash.com/photos/MthLYI2WLCs">Ales Krivec</a> is licensed under a Creative Commons Zero <a href="https://creativecommons.org/publicdomain/zero/1.0/">Creative Commons Zero</a>.
+        Background by <a href="https://unsplash.com/photos/-g7axSVst6Y">Štefan Štefančík</a> is licensed under a <a href="https://creativecommons.org/publicdomain/zero/1.0/">Creative Commons Zero</a>.
       </p>
     </footer>
-  <script type="text/javascript" src="./static/js/manifest.add9115b09630767b5ee.js"></script>
-  <script type="text/javascript" src="./static/js/vendor.32a39f4fc84fa91d3911.js"></script>
-  <script type="text/javascript" src="./static/js/app.cc0cffc5180b8e59ac4f.js"></script></div></body>
+  <script type="text/javascript" src="/static/js/manifest.ef4bd3a5f27f7da4082b.js"></script><script type="text/javascript" src="/static/js/vendor.7a372a3c6aa5c8dc6f3e.js"></script><script type="text/javascript" src="/static/js/app.d92a819c5c236289c2ae.js"></script></div></body>
 </html>
