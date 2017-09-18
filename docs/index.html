@@ -5,14 +5,13 @@
     <title>weather-app</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.css">
-  <link href="/static/css/app.8b36083165e7336c1c4b822c63f1a284.css" rel="stylesheet"></head>
+  <link href="./static/css/app.8b36083165e7336c1c4b822c63f1a284.css" rel="stylesheet"></head>
   <body>
   <div class="container">
     <h1 class="text-center ts">Current Weather</h1>
     <div id="app">
       <form v-on:submit.prevent="lookupWeather">
         <template>
-          
           <places v-model="location" placeholder="Where are we going ?" :options="{ countries: ['US'] }">
           </places>
         </template>
@@ -41,5 +40,7 @@
         Background by <a href="https://unsplash.com/photos/-g7axSVst6Y">Štefan Štefančík</a> is licensed under a <a href="https://creativecommons.org/publicdomain/zero/1.0/">Creative Commons Zero</a>.
       </p>
     </footer>
-  <script type="text/javascript" src="/static/js/manifest.ef4bd3a5f27f7da4082b.js"></script><script type="text/javascript" src="/static/js/vendor.7a372a3c6aa5c8dc6f3e.js"></script><script type="text/javascript" src="/static/js/app.d92a819c5c236289c2ae.js"></script></div></body>
+  <script type="text/javascript" src="./static/js/manifest.ef4bd3a5f27f7da4082b.js"></script>
+  <script type="text/javascript" src="./static/js/vendor.7a372a3c6aa5c8dc6f3e.js"></script>
+  <script type="text/javascript" src="./static/js/app.d92a819c5c236289c2ae.js"></script></div></body>
 </html>
