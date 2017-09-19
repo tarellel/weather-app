@@ -23,6 +23,10 @@ new Vue({
     location(){
       if((this.location == '') && (this.weather.temperature != '')){
         this.clearWeather()
+      }else{
+        if((this.location) && (this.location.length >= 3)){
+          this.lookupWeather();
+        }
       }
     }
   },
@@ -36,25 +40,28 @@ new Vue({
       }
     },
     lookupWeather(){
-      let api_link = 'http://api.openweathermap.org/data/2.5/weather?q=' + this.location + '&units=imperial&appid=cfaa2c01a61cbbef0ffa75e68bd33666'
+      if(this.location){
+        let api_link = 'http://api.openweathermap.org/data/2.5/weather?q=' + this.location + '&units=imperial&appid=cfaa2c01a61cbbef0ffa75e68bd33666'
 
-      //console.log(api_link)
-      axios.get(api_link)
-      .then((response) => {
-        //console.log(response.data)
-        let weather = response.data
-        this.weather.temperature = Math.floor(weather.main.temp);
-        this.weather.wind = Math.floor(weather.wind.speed);
-        this.weather.desc = weather.weather[0].description;
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+        axios.get(api_link)
+        .then((response) => {
+          //console.log(response.data)
+          let weather = response.data
+          this.weather.temperature = Math.floor(weather.main.temp);
+          this.weather.wind = Math.floor(weather.wind.speed);
+          this.weather.desc = weather.weather[0].description;
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+      }
     },
 
     weatherIcon(){
       if(this.weather.desc.includes('cloudy') || this.weather.desc.includes('clouds')){
         return 'wi-cloudy'
+      }else if (this.weather.desc.includes('haze')){
+        return 'wi-day-haze'
       }else if (this.weather.desc.includes('raining')
                 || this.weather.desc.includes('rain')
                 || this.weather.desc.includes('mist')) {
