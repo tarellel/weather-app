@@ -7,12 +7,16 @@ import axios from 'axios';
 
 //Vue.use(VueAxios, axios)
 /* eslint-disable no-new */
-
 new Vue({
   el: '#app',
   components: { Places },
   data: {
     location: '',
+
+    geocode: {
+      lat: '',
+      long: ''
+    },
     weather: {
       temperature: '',
       wind: '',
@@ -32,6 +36,21 @@ new Vue({
   },
 
   methods: {
+    updateGeocode(loc){
+      // if no location is specified, clear the geocode
+      if(!loc){
+        this.geocode.lat = '';
+        this.geocode.long = '';
+      }else{
+        if(Object.keys(loc).length > 3){
+          // verify the lat/long fields exist before attempting to pull the locations values
+          if((loc.latlng.lat) && (loc.latlng.lat != '')){
+            this.geocode.lat = loc.latlng.lat;
+            this.geocode.long = loc.latlng.lat;
+          }
+        }
+      }
+    },
     clearWeather(){
       this.weather = {
         temperature: '',
@@ -40,8 +59,11 @@ new Vue({
       }
     },
     lookupWeather(){
-      if(this.location){
-        let api_link = 'http://api.openweathermap.org/data/2.5/weather?q=' + this.location + '&units=imperial&appid=cfaa2c01a61cbbef0ffa75e68bd33666'
+      // verify the specified location exists, with valid latitude/longitude values
+      if(this.location &&
+        (this.geocode.lat != '') && (this.geocode.long != '')){
+
+        let api_link = `http://api.openweathermap.org/data/2.5/weather?lat=${this.geocode.lat}&lon=${this.geocode.long}&units=imperial&appid=cfaa2c01a61cbbef0ffa75e68bd33666`
 
         axios.get(api_link)
         .then((response) => {

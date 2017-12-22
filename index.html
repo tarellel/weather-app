@@ -29,6 +29,7 @@
           <places
             v-model.trim="location"
             placeholder="Where are we going ?"
+            @change="val => { updateGeocode(val) } "
             :options="{ countries: ['US'] }">
           </places>
         </template>

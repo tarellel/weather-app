@@ -1,5 +1,3 @@
-
-
 <script>
 export default {
   name: 'app',
@@ -34,7 +32,6 @@ a, a:active, a:visited{
 .ts{
   text-shadow: 0 1px 2px rgba(0,0,0,.25);
 }
-
 
 /*h3 { color: #1fab89;}*/
 h3{ color: #fff; }

@@ -19,19 +19,18 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.css">
-  <link href="./static/css/app.8b36083165e7336c1c4b822c63f1a284.css" rel="stylesheet"></head>
+  <link href="/static/css/app.8b36083165e7336c1c4b822c63f1a284.css" rel="stylesheet"></head>
   <body>
   <div class="container">
     <h1 class="text-center ts">Current Weather</h1>
     <div id="app">
       <form @submit.prevent="lookupWeather">
         <template>
-          <places v-model.trim="location" placeholder="Where are we going ?" :options="{ countries: ['US'] }">
+          <places v-model.trim="location" placeholder="Where are we going ?" @change="val => { updateGeocode(val) } " :options="{ countries: ['US'] }">
           </places>
         </template>
         <p class="text-center ts"><small>Currently set to search by U.S. cities only</small></p>
       </form>
-
 
       <div v-if="location" class="details col-md-12 ts">
         <h3>
@@ -63,7 +62,5 @@
       ga('create', 'UA-87158719-1', 'auto');
       ga('send', 'pageview');
     </script>
-  <script type="text/javascript" src="./static/js/manifest.30bf5559e7304934e4c2.js"></script>
-  <script type="text/javascript" src="./static/js/vendor.7a372a3c6aa5c8dc6f3e.js"></script>
-  <script type="text/javascript" src="./static/js/app.0884220feb603547637a.js"></script></div></body>
+  <script type="text/javascript" src="/static/js/manifest.93d44030fd5c30f6e411.js"></script><script type="text/javascript" src="/static/js/vendor.99b4c84cc08158ea372a.js"></script><script type="text/javascript" src="/static/js/app.a21baa9e1fe89a4f1a65.js"></script></div></body>
 </html>
