@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>weather-app</title>
+    <title>Current Weather Forcast - weather-app</title>
     <meta name="google" content="notranslate">
     <meta name="robots" content="index, follow">
     <meta http-equiv="Content-Language" content="en">
@@ -13,45 +13,52 @@
     <!-- Prefetch/Connect to prepare for loading of assets -->
     <link href="https://www.google-analytics.com/" rel="preconnect" crossorigin>
     <link href="https://cdnjs.cloudflare.com/" rel="preconnect" crossorigin>
+    <link href="https://maps.googleapis.com/" rel="preconnect" crossorigin>
+    <link href="https://cors-anywhere.herokuapp.com/" rel="preconnect" crossorigin>
     <!-- Prefetch DNS for external assets -->
     <link rel="dns-prfetch" href="https://www.google-analytics.com/">
     <link rel="dns-prefetch" href="https://maxcdn.bootstrapcdn.com/">
+    <link rel="dns-prefetch" href="https://maps.googleapis.com/">
+    <link rel="dns-prefetch" href="https://cors-anywhere.herokuapp.com/">
     <!-- External Assets -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpCB7MSjodXsu9heytVpnSZ6DpBS4kNk8&libraries=places"></script>
   </head>
   <body>
   <div class="container">
-    <h1 class="text-center ts">Current Weather</h1>
+    <h1 class="text-center">Current Weather</h1>
     <div id="app">
       <form @submit.prevent="lookupWeather">
-        <template>
-          <places
-            v-model.trim="location"
-            placeholder="Where are we going ?"
-            @change="val => { updateGeocode(val) } "
-            :options="{ countries: ['US'] }">
-          </places>
-        </template>
-        <p class="text-center ts"><small>Currently set to search by U.S. cities only</small></p>
+        <vue-google-autocomplete
+            autofocus
+            required
+            ref="address"
+            id="map"
+            classname="form-control"
+            placeholder="Please type your address"
+            v-on:placechanged="getAddressData"
+            country="us"
+            types="(regions)"
+            ></vue-google-autocomplete>
+        <p class="text-center"><small>Currently set to search by U.S. cities only</small></p>
       </form>
 
-      <div v-if="location" class="details col-md-12 ts">
+      <div v-if="location" class="details col-md-12">
         <h3>
-          <strong>Lookup:</strong> {{ location }}
+          <strong>Lookup:</strong> {{ formatted_address }}
         </h3>
         <p v-if="weather.temperature">
           <strong>Temperature:</strong> {{ weather.temperature }} &deg; (F)<br>
           <strong>Wind:</strong> {{ weather.wind }} (mph)<br>
-          <strong>Description:</strong> {{ weather.desc }}
+          <strong>Description:</strong> {{ formatDesc(weather.desc) }}
         </p>
-
         <div class="weatherIcon text-center" v-if="weather.desc">
           <h1 class="wi" :class="weatherIcon()"></h1>
         </div>
       </div>
     </div>
-    <footer class="text-center col-md-12 ts">
+    <footer class="text-center col-md-12">
       <p>
         Copyright &copy; Brandon Hicks<br>
         Background by <a href="https://unsplash.com/photos/-g7axSVst6Y">Štefan Štefančík</a> is licensed under a <a href="https://creativecommons.org/publicdomain/zero/1.0/">Creative Commons Zero</a>.

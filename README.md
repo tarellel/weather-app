@@ -12,3 +12,10 @@ weather-icons
 https://cdnjs.com/libraries/weather-icons
 
 Background Image: [Ales Krivec - Unsplash](https://unsplash.com/photos/MthLYI2WLCs)
+
+
+# Need to migrate webpack from 1-3
+https://webpack.js.org/guides/migrating/
+https://medium.com/webpack/webpack-3-official-release-15fd2dd8f07b
+https://webpack-gatsby.netlify.com/how-to/upgrade-from-webpack-1/
+-- Optimize Webpack: https://medium.com/@khanght/optimize-webpack-production-build-ec594242b222

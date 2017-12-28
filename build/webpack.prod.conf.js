@@ -25,14 +25,18 @@ var webpackConfig = merge(baseWebpackConfig, {
     })
   },
   plugins: [
+    // added to optimize output and reduce duplicate bundles of code
+    new webpack.optimize.DedupePlugin(),
+
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
     new webpack.DefinePlugin({
       'process.env': env
     }),
+    // Use UglifyJS to minimize component sizes
     new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
+      minimize: true,
+      compress: { warnings: false },
+      output: { comments: false }
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     // extract css into its own file
